@@ -1,3 +1,8 @@
+use hydrigo::prelude::*;
+
 fn main() {
-    println!("Hello, world!");
+    let state = State::new("hello", &updater::print);
+
+    state.set("world");
+    state.set("hello world");
 }
