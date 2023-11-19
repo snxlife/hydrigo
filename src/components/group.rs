@@ -1,29 +1,23 @@
+use hydrigo_macros::component;
+
 use crate::{component::Drawable, cursor::Cursor, component::Component,
-    stylesheet::StyleSheet, value::Value, impl_attribute};
+    stylesheet::StyleSheet};
 
-impl_attribute! {
-    GroupAttribute {
-        content(
-            Value::from_const(Vec::new())
-        ) : set_content(Value<Vec<Box<dyn Drawable>>>),
-    }
-}
-
-#[derive(Clone)]
 struct GroupDrawable {
-    pub(crate) parts: Value<Vec<Box<dyn Drawable>>>,
+    pub(crate) parts: Vec<Box<dyn Drawable>>,
 }
 
 impl Drawable for GroupDrawable {
     fn render(&self, outer: &mut Cursor, style: &StyleSheet) {
-        for part in self.parts.value() {
+        for part in &self.parts {
             part.render(outer, style);
         }
     }
 }
 
+#[component]
 pub struct Group {
-    content: Value<Vec<Box<dyn Drawable>>>,
+    content: Vec<Box<dyn Drawable>>,
 }
 
 impl Group {

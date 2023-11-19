@@ -1,12 +1,8 @@
 use crate::{cursor::Cursor, stylesheet::StyleSheet};
 
-use dyn_clone::DynClone;
-
-pub trait Drawable: DynClone {
+pub trait Drawable {
     fn render(&self, outer: &mut Cursor, style: &StyleSheet);
 }
-
-dyn_clone::clone_trait_object!(Drawable);
 
 pub trait Component {
     type Attribute;
