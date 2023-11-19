@@ -13,5 +13,10 @@ keywords = [ "tui", "terminal", "hydrigo" ]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[features]
+default = [ "hydrigo_macros" ]
+
 [dependencies]
 colorful = "0.2.2"
+dyn-clone = "1.0.16"
+hydrigo_macros = { path = "./hydrigo_macros", optional = true }
